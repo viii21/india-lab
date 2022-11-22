@@ -1,0 +1,226 @@
+<html>
+<head>
+
+    <div class="container">
+        <form action="action_page.php">
+          <div class="row">
+            <div class="col-25">
+              <label for="fname">First Name</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="fname" name="firstname" placeholder="Your name..">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="lname">Last Name</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+            </div>
+          </div>
+
+          <label>Email: <input type="email" name="email" size="30" maxlength="100"></label><br />
+          <label>SSN No: <input type="integer" name="SSN No" size="30" maxlength="100"></label><br />
+          <label>Phone No: <input type="inetger" name="Phone No" size="30" maxlength="100"></label><br />
+          <label>Password: <input type="inetger" name="Password" size="30" maxlength="100"></label><br />
+          <label>Date: <input type="inetger" name="Date" size="30" maxlength="100"></label><br />
+          <label>Time: <input type="inetger" name="Time" size="30" maxlength="100"></label><br />
+          <label>Major: <input type="text" name="Major" size="30" maxlength="100"></label><br />
+           American citizen?</br>
+          <label><input type="radio" name="rating" value="yes" /> Yes</label><br />
+          <label><input type="radio" name="rating" value="NO" /> No</label><br />
+		  </fieldset><br />
+		    <fieldset>
+				<legend>Your Review:</legend>
+				<p>
+					<label for="hear-about">How did you hear about us?</label>
+					<select name="referrer" id="hear-about">
+						<option value="google">Google</option>
+						<option value="friend">Friend</option>
+						<option value="advert">Advert</option>
+						<option value="other">Other</option>
+					</select>
+				</p>
+
+          <div class="row">
+            <div class="col-25">
+              <label for="country">Country</label>
+            </div>
+            <div class="col-75">
+              <select id="country" name="country">
+                <option value="australia">Australia</option>
+                <option value="canada">Canada</option>
+                <option value="usa">USA</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="subject">Subject</label>
+            </div>
+            <div class="col-75">
+              <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+</head>
+
+<style>
+.form-control {
+    display: block;
+    width: 35%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+	}
+	body {font-family: Arial, Helvetica, sans-serif;}
+
+</style>
+
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <body>
+  <form name="myform" style="padding:20px;" id="myForm">
+    <select name="optone" class="selectDD form-control" style="width: 35%;" id="stateSel" size="1">
+        <option value="" selected="selected">Select state</option>
+    </select>
+    <br>
+    <br>
+    <select name="opttwo" class="selectDD form-control" style="width: 35%;" id="countySel" size="1">
+        <option value="" selected="selected">Please select state first</option>
+    </select>
+    <br>
+    <br>
+    <select name="optthree" class="selectDD form-control" style="width: 35%;" id="citySel" size="1">
+        <option value=""  selected="selected">Please select county first</option>
+    </select>
+</form>
+<script>
+var stateObject = {
+    "India": {
+        "Mumbai": ["Bandra", "Goregaon", "Marin Lines"],
+        "Pune": ["Lal Mahal", "Hinjawadi"],
+		"Delhi":["Gurugram", "Karol Bagh"]
+    },
+    "United States": {
+        "California": ["San Diego", "Sears Point"],
+        "Nevada": ["Las Vegas", "Lamoille Canyon"]
+    },
+	"United Kingdom": {
+        "England": ["Cambridge.", "London", "Bristol"],
+        "Scotland": ["Glasgow", "Edinburgh"]
+    }
+}
+window.onload = function(){
+	var stateSel = document.getElementById("stateSel"),
+	countySel = document.getElementById("countySel"),
+	citySel = document.getElementById("citySel");
+	
+	for (var state in stateObject){
+		stateSel.options[stateSel.options.length] = new Option(state, state);
+	}
+	
+	stateSel.onchange = function(){
+		countySel.length = 1;
+		citySel.length =1;
+		if(this.selectedIndes < 1) return;
+		for(var county in stateObject[this.value]){
+			countySel.options[countySel.options.length] = new Option(county, county);
+		}
+	}
+	
+	stateSel.onchange();
+	
+	countySel.onchange = function(){
+		citySel.length = 1;
+		if(this.selectedIndex < 1) return;
+		
+		var cities = stateObject[stateSel.value][this.value];
+		for(var i = 0; i < cities.length; i++){
+			citySel.options[citySel.options.length] = new Option(cities[i], cities[i]);
+		}
+	}
+}
+       </script>
+           <div class="row">
+           <input type="submit" value="Submit">
+    </div>
+
+  <footer class="footer">
+    <ul class="footer_ul_amrc">
+    <li><h4><a href="https://validator.unl.edu/?showsource=yes&doc=https%3A%2F%2Fviii21.github.io%2Fhotel-hotel%2F" target="_blank">Page Validity</a></h4></li> 
+    <br>
+    <li><h4><a href="https://github.com/viii21/hotel-hotel" target="_blank">See The Code</a></h4></li>
+    <br>
+    <!--footer_ul_amrc ends here-->
+</footer>
+
+    <!-- bootstraps 4.5.3 -->
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx' crossorigin='anonymous'></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+
+    <!-- jqueries:  -->
+    <script src='https://code.jquery.com/jquery-3.6.0.min.js' integrity='sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=' crossorigin='anonymous'></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <html lang="en">
+
+        <head>
+            <meta charset="UTF-8">
+            <title>json fetch example</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+            <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css'>
+            <!-- <link rel="stylesheet" href="css/styles.css"> -->
+        
+        </head>
+        
+        <body>
+            <nav class="navbar bg-dark navbar-dark navbar-expand-sm sticky-top">
+                <p class="navbar-brand ps-3">json fetch Example</p>
+                <ul class="navbar-nav">
+                    <!-- <li class="navitem"><a class="nav-link" href="https://www.w3schools.com/bootstrap5/bootstrap_forms.php" target="_blank">BS5 Forms @ W3C-School</a> </li>
+                    <li class="navitem"><a class="nav-link" href="https://codepen.io/barrycumbie/pen/abyVxmV" target="_blank">See the CodePen version</a> </li>
+                    <li class="navitem"><button id="btnLoadData" class="btn btn-secondary">load json</button></li> -->
+                </ul>
+        
+            </nav>
+        
+            <div class="container-fluid">
+        
+                <div class="row">
+                    <div class="col-md-5 offset-md-2">
+                        <div class="card">
+                            <h2 class="card-title">Load the JSON Data</h2>
+                            <div class="card-body">
+                                Data are in a separate file (.json) on the same server
+                                <button id="btnLoadData" class="btn btn-secondary">load json</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+        
+        
+        
+            </div>
+            <!--   ends content container -->
+        
+            <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js'></script>
+            <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+            <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+            <!-- <script src="scripts/india.js"></script> -->
+            <script src="scripts/fetchJohnDoe.js"></script>
+        
+        </body>
+        
+        </html>
+        
+</body>
+</html>
